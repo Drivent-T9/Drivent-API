@@ -128,6 +128,126 @@ async function main() {
     }
   });
   console.log({ event });
+  await prisma.activityPlace.create({
+    data: {
+      name: "Auditório Principal",
+      Activity: {
+        createMany: {
+          data: [
+            {
+              name: faker.name.jobTitle(),
+              capacity: 20,
+              startsAt: dayjs().date(28).hour(14).toDate(),
+              endsAt: dayjs().date(28).hour(15).toDate(),
+            },
+            {
+              name: faker.name.jobTitle(),
+              capacity: 15,
+              startsAt: dayjs().date(29).hour(9).toDate(),
+              endsAt: dayjs().date(29).hour(13).toDate(),
+            },
+            {
+              name: faker.name.jobTitle(),
+              capacity: 15,
+              startsAt: dayjs().date(30).hour(9).toDate(),
+              endsAt: dayjs().date(30).hour(10).toDate(),
+            },
+            {
+              name: faker.name.jobTitle(),
+              capacity: 20,
+              startsAt: dayjs().date(30).hour(11).toDate(),
+              endsAt: dayjs().date(30).hour(13).toDate(),
+            },
+          ]
+        }
+      }
+    }
+  });
+
+  await prisma.activityPlace.create({
+    data: {
+      name: "Auditório Lateral",
+      Activity: {
+        createMany: {
+          data: [
+            {
+              name: faker.name.jobTitle(),
+              capacity: 9,
+              startsAt: dayjs().date(28).hour(9).toDate(),
+              endsAt: dayjs().date(28).hour(10).toDate(),
+            },
+            {
+              name: faker.name.jobTitle(),
+              capacity: 6,
+              startsAt: dayjs().date(28).hour(10).toDate(),
+              endsAt: dayjs().date(28).hour(11).toDate(),
+            },
+            {
+              name: faker.name.jobTitle(),
+              capacity: 10,
+              startsAt: dayjs().date(28).hour(11).toDate(),
+              endsAt: dayjs().date(28).hour(12).toDate(),
+            },
+            {
+              name: faker.name.jobTitle(),
+              capacity: 20,
+              startsAt: dayjs().date(28).hour(13).toDate(),
+              endsAt: dayjs().date(28).hour(14).toDate(),
+            },
+            {
+              name: faker.name.jobTitle(),
+              capacity: 15,
+              startsAt: dayjs().date(29).hour(13).toDate(),
+              endsAt: dayjs().date(29).hour(15).toDate(),
+            },
+            {
+              name: faker.name.jobTitle(),
+              capacity: 15,
+              startsAt: dayjs().date(30).hour(9).toDate(),
+              endsAt: dayjs().date(30).hour(10).toDate(),
+            },
+            {
+              name: faker.name.jobTitle(),
+              capacity: 30,
+              startsAt: dayjs().date(30).hour(12).toDate(),
+              endsAt: dayjs().date(30).hour(14).toDate(),
+            },
+
+          ]
+        }
+      }
+    }
+  });
+
+  await prisma.activityPlace.create({
+    data: {
+      name: "Sala de Workshop",
+      Activity: {
+        createMany: {
+          data: [
+            {
+              name: faker.name.jobTitle(),
+              capacity: 30,
+              startsAt: dayjs().date(28).hour(12).toDate(),
+              endsAt: dayjs().date(28).hour(15).toDate(),
+            },
+            {
+              name: faker.name.jobTitle(),
+              capacity: 36,
+              startsAt: dayjs().date(29).hour(9).toDate(),
+              endsAt: dayjs().date(29).hour(13).toDate(),
+            },
+            {
+              name: faker.name.jobTitle(),
+              capacity: 34,
+              startsAt: dayjs().date(30).hour(9).toDate(),
+              endsAt: dayjs().date(30).hour(12).toDate(),
+            },
+          ]
+        }
+      }
+    }
+  });
 }
 
 main()
