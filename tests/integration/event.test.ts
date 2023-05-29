@@ -31,6 +31,8 @@ describe('GET /event', () => {
       logoImageUrl: event.logoImageUrl,
       startsAt: event.startsAt.toISOString(),
       endsAt: event.endsAt.toISOString(),
+      createdAt: expect.any(String),
+      updatedAt: expect.any(String),
     });
   });
 });

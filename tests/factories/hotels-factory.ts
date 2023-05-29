@@ -1,6 +1,7 @@
 import { Hotel, Room, Ticket, TicketStatus, TicketType } from '@prisma/client';
 import faker from '@faker-js/faker';
 import { prisma } from '@/config';
+import { GetHotel, GetRoomsBooking } from '@/repositories/hotel-repository';
 
 export async function createHotel() {
   return await prisma.hotel.create({
@@ -44,13 +45,17 @@ export function findTicketFailByEnrollmentIdReturn() {
 }
 
 export function getHotelsMock() {
-  const expect: Hotel[] = [
+  const expect: GetHotel[] = [
     {
       id: 1,
       name: 'Teste',
       image: 'teste image',
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      freeSlots: 2,
+      typeRooms: {
+        single: true,
+        double: false,
+        triple: false,
+      },
     },
   ];
 
@@ -58,7 +63,7 @@ export function getHotelsMock() {
 }
 
 export function getRoomsByHotelIdMock() {
-  const expect: Hotel & { Rooms: Room[] } = {
+  const expect: Hotel & { Rooms: GetRoomsBooking[] } = {
     id: 1,
     name: 'Teste',
     image: 'teste image',
@@ -69,9 +74,9 @@ export function getRoomsByHotelIdMock() {
         id: 1,
         name: 'Teste',
         capacity: 1,
-        hotelId: 1,
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        _count: {
+          Booking: 0,
+        },
       },
     ],
   };
