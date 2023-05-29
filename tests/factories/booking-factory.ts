@@ -1,6 +1,5 @@
 import { Address, Booking, Enrollment, Hotel, Room, Ticket, TicketStatus, TicketType } from '@prisma/client';
 import dayjs from 'dayjs';
-import { getHotelsMock } from './hotels-factory';
 import { prisma } from '@/config';
 
 type CreateBookingParams = {
