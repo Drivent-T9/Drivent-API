@@ -94,8 +94,12 @@ describe('GET /hotels', () => {
           id: createdHotel.id,
           name: createdHotel.name,
           image: createdHotel.image,
-          createdAt: createdHotel.createdAt.toISOString(),
-          updatedAt: createdHotel.updatedAt.toISOString(),
+          freeSlots: expect.any(Number),
+          typeRooms: {
+            single: expect.any(Boolean),
+            double: expect.any(Boolean),
+            triple: expect.any(Boolean),
+          },
         },
       ]);
     });
@@ -208,9 +212,9 @@ describe('GET /hotels/:hotelId', () => {
             id: createdRoom.id,
             name: createdRoom.name,
             capacity: createdRoom.capacity,
-            hotelId: createdHotel.id,
-            createdAt: createdRoom.createdAt.toISOString(),
-            updatedAt: createdRoom.updatedAt.toISOString(),
+            _count: {
+              Booking: expect.any(Number),
+            },
           },
         ],
       });

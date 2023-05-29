@@ -1,4 +1,4 @@
-import { Booking } from '@prisma/client';
+import { Booking, Hotel, Room } from '@prisma/client';
 import { prisma } from '@/config';
 
 type CreateParams = Omit<Booking, 'id' | 'createdAt' | 'updatedAt'>;
@@ -41,7 +41,7 @@ async function findByUserId(userId: number) {
         },
       },
     },
-  });
+  }) as Promise<Booking & { Room: Room & { Hotel: Hotel; _count: { Booking: number } } }>;
 }
 
 async function upsertBooking({ id, roomId, userId }: UpdateParams) {

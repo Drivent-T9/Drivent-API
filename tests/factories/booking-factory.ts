@@ -1,4 +1,5 @@
-import { Address, Booking, Enrollment, Room, Ticket, TicketStatus, TicketType } from '@prisma/client';
+import { Address, Booking, Enrollment, Hotel, Room, Ticket, TicketStatus, TicketType } from '@prisma/client';
+import { getHotelsMock } from './hotels-factory';
 import { prisma } from '@/config';
 
 type CreateBookingParams = {
@@ -16,7 +17,7 @@ export function createBooking({ roomId, userId }: CreateBookingParams) {
 }
 
 export function getBookingReturn() {
-  const booking: Booking & { Room: Room } = {
+  const booking: Booking & { Room: Room & { Hotel: Hotel; _count: { Booking: number } } } = {
     id: 1,
     userId: 1,
     roomId: 1,
@@ -29,13 +30,17 @@ export function getBookingReturn() {
       hotelId: 1,
       createdAt: new Date(),
       updatedAt: new Date(),
+      Hotel: getHotelsMock()[0],
+      _count: {
+        Booking: 1,
+      },
     },
   };
   return booking;
 }
 
 export function getBookingDifferentUserIdReturn() {
-  const booking: Booking & { Room: Room } = {
+  const booking: Booking & { Room: Room & { Hotel: Hotel; _count: { Booking: number } } } = {
     id: 1,
     userId: 2,
     roomId: 1,
@@ -48,6 +53,10 @@ export function getBookingDifferentUserIdReturn() {
       hotelId: 1,
       createdAt: new Date(),
       updatedAt: new Date(),
+      Hotel: getHotelsMock()[0],
+      _count: {
+        Booking: 1,
+      },
     },
   };
   return booking;
