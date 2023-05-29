@@ -1,4 +1,5 @@
 import { Address, Booking, Enrollment, Hotel, Room, Ticket, TicketStatus, TicketType } from '@prisma/client';
+import dayjs from 'dayjs';
 import { getHotelsMock } from './hotels-factory';
 import { prisma } from '@/config';
 
@@ -30,7 +31,13 @@ export function getBookingReturn() {
       hotelId: 1,
       createdAt: new Date(),
       updatedAt: new Date(),
-      Hotel: getHotelsMock()[0],
+      Hotel: {
+        id: 1,
+        name: 'hotel 1',
+        image: '',
+        createdAt: dayjs().toDate(),
+        updatedAt: dayjs().toDate(),
+      },
       _count: {
         Booking: 1,
       },
@@ -53,7 +60,13 @@ export function getBookingDifferentUserIdReturn() {
       hotelId: 1,
       createdAt: new Date(),
       updatedAt: new Date(),
-      Hotel: getHotelsMock()[0],
+      Hotel: {
+        id: 1,
+        name: 'hotel 1',
+        image: '',
+        createdAt: dayjs().toDate(),
+        updatedAt: dayjs().toDate(),
+      },
       _count: {
         Booking: 1,
       },
